@@ -114,7 +114,7 @@ class RDPG(object):
 
     def update_policy(self):
         # Sample batch
-        experiences = self.memory.sample(self.batch_size,0)
+        experiences = self.memory.sample(self.batch_size)
         if len(experiences) == 0: # not enough samples
             return
 
