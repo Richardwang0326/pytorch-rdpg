@@ -168,7 +168,7 @@ class RDPG(object):
 
             self.agent.actor.zero_grad()
             policy_loss = policy_loss.mean()
-            policy_loss.backward()
+            policy_loss.backward(retain_graph=True)
             self.actor_optim.step()
 
 
