@@ -9,6 +9,7 @@ from model import (Actor, Critic)
 from memory import SequentialMemory, EpisodicMemory
 from random_process import OrnsteinUhlenbeckProcess
 from util import *
+import os
 
 criterion = nn.MSELoss()
 
@@ -96,6 +97,9 @@ class Agent(object):
 
 
     def save_model(self,output):
+        if not os.path.exists(output):
+            mkdirs(output)
+        
         torch.save(
             self.actor.state_dict(),
             '{}/actor.pkl'.format(output)
