@@ -98,7 +98,7 @@ class Agent(object):
 
     def save_model(self,output):
         if not os.path.exists(output):
-            os.mkdirs(output)
+            os.mkdir(output)
         
         torch.save(
             self.actor.state_dict(),
