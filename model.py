@@ -81,7 +81,7 @@ class Critic(nn.Module):
         out = self.relu(out)
         out = out.reshape(out.shape[0],1,-1)
         out = self.lstm(out)
-        out = torch.stack(out)
+        out = torch.stack(np.array(out))
         out = out.reshape(out.shape[0],-1)
         out = self.fc3(out)
         return out
