@@ -82,7 +82,7 @@ class Critic(nn.Module):
         out = out.reshape(out.shape[0],1,-1)
         out = self.lstm(out)
         print(type(out))
-#         out = torch.FloatTensor(out)
-#         out = out.reshape(out.shape[0],-1)
-#         out = self.fc3(out)
+        out = torch.FloatTensor(np.array(out))
+        out = out.reshape(out.shape[0],-1)
+        out = self.fc3(out)
         return out
