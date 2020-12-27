@@ -84,5 +84,6 @@ class Critic(nn.Module):
         print(type(out))
         out = np.array(out)
         out = out.reshape(out.shape[0],-1)
+        out = Variable(torch.Tensor(out))
         out = self.fc3(out)
         return out
