@@ -80,7 +80,7 @@ class Critic(nn.Module):
         out = self.fc2(torch.cat([out,a], 1)) # dim should be 1, why doesn't work?
         out = self.relu(out)
         out = out.reshape(out.shape[0],1,-1)
-        out = self.lstm(out)
+        out,_ = self.lstm(out)
         out = out.reshape(out.shape[0],-1)
         out = self.fc3(out)
         return out
