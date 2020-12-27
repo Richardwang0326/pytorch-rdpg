@@ -58,6 +58,7 @@ class Critic(nn.Module):
         super(Critic, self).__init__()
         self.fc1 = nn.Linear(nb_states, 20)
         self.fc2 = nn.Linear(20 + nb_actions, 50)
+        self.lstm = nn.LSTMCell(50, 50)
         self.fc3 = nn.Linear(50, 1)
         self.relu = nn.ReLU()
         self.init_weights(init_w)
@@ -75,5 +76,7 @@ class Critic(nn.Module):
         #out = self.fc2(torch.cat([out,a],dim=1)) # dim should be 1, why doesn't work?
         out = self.fc2(torch.cat([out,a], 1)) # dim should be 1, why doesn't work?
         out = self.relu(out)
+        out, _ = self.lstm(out, (self.hx, self.cx))
+
         out = self.fc3(out)
         return out
